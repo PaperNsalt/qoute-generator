@@ -1,10 +1,46 @@
+@import "tailwindcss";
+
 *{
   box-sizing: border-box;
-   font-family: "Slackey", sans-serif;
-   font-optical-sizing: auto;
+  font-optical-sizing: auto;
+  font-family: var(--font-secondary);
 }
 
 *::before,
 *::after{
   box-sizing: border-box;
+}
+
+:root {
+        --color-primary: hsl(73, 50%, 90%);
+        --color-secondary: hsl(73, 50%, 10%);
+        --color-tertiary: hsl(133, 80%, 20%);
+        --color-accent: hsl(13, 80%, 20%);
+
+        --font-primary: "Slackey", sans-serif;
+        --font-secondary: "Outfit", sans-serif;
+    }
+
+.dark {
+        --color-primary: hsl(73, 50%, 10%);
+        --color-secondary: hsl(73, 50%, 90%);
+        --color-tertiary: hsl(133, 80%, 80%);
+        --color-accent: hsl(13, 80%, 80%);
+    }
+
+h1{
+  font-family: var(--font-primary);
+}
+
+ul{
+  font-size: 1.2rem;
+  font-family: var(--font-secondary);
+}
+
+p{
+  font-family: var(--font-secondary);
+}
+
+section{
+  padding-top: 4em;
 }
