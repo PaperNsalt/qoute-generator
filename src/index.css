@@ -1,0 +1,10 @@
+*{
+  box-sizing: border-box;
+   font-family: "Slackey", sans-serif;
+   font-optical-sizing: auto;
+}
+
+*::before,
+*::after{
+  box-sizing: border-box;
+}
