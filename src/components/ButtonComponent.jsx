@@ -17,14 +17,14 @@ function ButtonLink({
         className="inline-block"
       >
         <motion.button
-          whileHover={{ scale: 1.03, y: -2 }}
+          whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.9, y: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
           className="
           flex items-center gap-2
           border bg-black text-[1rem]
           text-white
-          px-3 py-2 rounded-2xl
+          px-3 py-2 rounded-3xl
           transition-colors duration-200
           hover:bg-[#f2f2f2]/80 hover:text-black hover:border-black
 

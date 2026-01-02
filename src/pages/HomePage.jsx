@@ -1,12 +1,15 @@
 import ButtonComponent from '../components/ButtonComponent.jsx';
 
+
+import QuoteAnimation from '../components/LottieComponent.jsx';
+
 function HomePage(){
   return (
     <>
     <section>
     
     <div className="grid grid-cols-2 p-10">
-      <div className="flex flex-col justify-start items-start">
+      <div className="flex flex-col justify-center items-start">
         <h1 className="text-[4rem] leading-16 text-left">
           Generate inspiring quotes anytime, anywhere
         </h1>
@@ -20,8 +23,8 @@ function HomePage(){
         />
       </div>
 
-      <div>
-
+      <div className='flex justify-center items-center'>
+        <QuoteAnimation />
       </div>
     </div>
 
