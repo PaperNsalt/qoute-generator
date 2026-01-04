@@ -1,46 +1,130 @@
 @import "tailwindcss";
 
-*{
+* {
   box-sizing: border-box;
   font-optical-sizing: auto;
   font-family: var(--font-secondary);
 }
 
 *::before,
-*::after{
+*::after {
   box-sizing: border-box;
 }
 
 :root {
-        --color-primary: hsl(73, 50%, 90%);
-        --color-secondary: hsl(73, 50%, 10%);
-        --color-tertiary: hsl(133, 80%, 20%);
-        --color-accent: hsl(13, 80%, 20%);
+  --color-primary: hsl(73, 50%, 90%);
+  --color-secondary: hsl(73, 50%, 10%);
+  --color-tertiary: hsl(133, 80%, 20%);
+  --color-accent: hsl(13, 80%, 20%);
 
-        --font-primary: "Slackey", sans-serif;
-        --font-secondary: "Outfit", sans-serif;
-    }
+  --font-primary: "Slackey", sans-serif;
+  --font-secondary: "Outfit", sans-serif;
+}
 
 .dark {
-        --color-primary: hsl(73, 50%, 10%);
-        --color-secondary: hsl(73, 50%, 90%);
-        --color-tertiary: hsl(133, 80%, 80%);
-        --color-accent: hsl(13, 80%, 80%);
-    }
+  --color-primary: hsl(73, 50%, 10%);
+  --color-secondary: hsl(73, 50%, 90%);
+  --color-tertiary: hsl(133, 80%, 80%);
+  --color-accent: hsl(13, 80%, 80%);
+}
 
-h1{
+h1 {
   font-family: var(--font-primary);
 }
 
-ul{
+ul {
   font-size: 1.2rem;
   font-family: var(--font-secondary);
 }
 
-p{
+p {
   font-family: var(--font-secondary);
 }
 
-section{
+section {
   padding-top: 4em;
+}
+
+.carousel-wrapper {
+  margin: 4rem auto;
+  width: 100%;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding: 1rem;
+}
+
+.set{
+  display: flex;
+}
+
+
+.card {
+  flex: 0 0 clamp(8rem, 20vw, 12rem);
+  height: clamp(8rem, 20vw, 12rem);
+  width: 500px;
+
+  min-width: 220px;
+
+  border-radius: 1rem;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  background: var(--);
+  color: var(--color-secondary, #fff);
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.text-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+  .track {
+    gap: 0.75rem;
+  }
+
+  .icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
 }
