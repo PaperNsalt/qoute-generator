@@ -2,6 +2,7 @@
 function QoutesPage(){
   return (
     <>
+    <section></section>
     <h1>QoutePage</h1>
     </>
   );

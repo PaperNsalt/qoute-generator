@@ -26,7 +26,7 @@ function ButtonLink({
           text-white
           px-3 py-2 rounded-3xl
           transition-colors duration-200
-          hover:bg-[#f2f2f2]/80 hover:text-black hover:border-black
+          hover:bg-[#b7ff5e] hover:text-black hover:border-black
 
           max-[426px]:text-[1.2rem]
         "
