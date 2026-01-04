@@ -34,11 +34,10 @@ backgroundColor = "white",
           <ButtonLink icon={icon} label={label} />
         </div>
 
-        {AnimationComponent && (
+      
         <div className="">
           <AnimationComponent width={400} height={400} />
         </div>
-      )}
       </div>
     </>
   );

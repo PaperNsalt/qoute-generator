@@ -122,6 +122,17 @@ function HomePage() {
           <CardComponent 
           title ="Search Engine"
           subtitle="optimization"
+          backgroundColor="black"
+          titleBgColor="white"
+          subtitleBgColor="white"
+          icon={ArrowUpRightIcon}
+          label="Learn More"
+          AnimationComponent={QuoteAnimation}
+          />
+
+          <CardComponent 
+          title ="Search Engine"
+          subtitle="optimization"
           icon={ArrowUpRightIcon}
           label="Learn More"
           AnimationComponent={QuoteAnimation}
