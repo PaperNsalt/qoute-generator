@@ -2,6 +2,7 @@ import { link } from "framer-motion/client";
 import ButtonLink from "../components/ButtonComponent.jsx";
 import Carousel from "../components/CarouselComponent.jsx";
 import CardComponent from "../components/CardComponent.jsx";
+import ContainerComponent from "../components/ContainerComponent.jsx";
 
 import { ArrowUpRightIcon, FacebookIcon } from "../components/IconComponent.jsx";
 
@@ -136,6 +137,57 @@ function HomePage() {
           icon={ArrowUpRightIcon}
           label="Learn More"
           AnimationComponent={QuoteAnimation}
+          />
+        </div>
+      </section>
+
+      <section>
+        <div className="grid grid-cols-2 p-10">
+          <div className="flex flex-col justify-evenly items-start">
+            <h1 className="text-[3.8rem]">
+              Let's make things happen
+            </h1>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia cum fuga ea provident tenetur id eius minus necessitatibus incidunt omnis molestias, quam mollitia, consequatur earum! Laudantium assumenda mollitia porro option. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo illo incidunt non tempora provident! Ipsa cumque perferendis doloremque voluptatem non consequatur laborum veritatis temporibus dolorum ex ducimus, doloribus quas! Quo!
+            </p>
+
+            <ButtonLink
+            label="Get your free proposal"
+            />
+          </div>
+
+          <div className="flex justify-center items-center">
+            <QuoteAnimation/>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="p-10 flex gap-4 justify-center items-center">
+          <h1 className="text-[3.8rem] w-full bg-[#b7ff5e] py-2 px-4 rounded-2xl">
+            Case Study
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
+            eos a quam necessitatibus, quas sint beatae quisquam nulla,
+            accusamus, deleniti distinctio maxime recusandae assumenda
+            repellendus culpa officia saepe quibusdam reiciendis voluptatibus
+            consectetur iusto? Quidem omnis praesentium rem id, fugiat est.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
+            libero facilis, repellat voluptatum temporibus, quos impedit natus
+            nisi velit officia unde amet debitis officiis commodi excepturi
+            expedita quibusdam est delectus.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(600px,2fr))] bg-black p-10 rounded-3xl">
+          
+          <ContainerComponent
+          text='hu'
           />
         </div>
       </section>

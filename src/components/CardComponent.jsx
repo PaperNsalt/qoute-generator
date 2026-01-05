@@ -35,9 +35,9 @@ backgroundColor = "white",
         </div>
 
       
-        <div className="">
+        
           <AnimationComponent width={400} height={400} />
-        </div>
+        
       </div>
     </>
   );
