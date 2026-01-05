@@ -4,7 +4,7 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-import QoutesPage from './pages/QoutesPage';
+import QuotesPage from './pages/QuotesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/qoutes" element={<QoutesPage />} />
+        <Route path="/qoutes" element={<QuotesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>

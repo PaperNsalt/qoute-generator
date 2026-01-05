@@ -1,5 +1,5 @@
 
-function QoutesPage(){
+function QuotesPage(){
   return (
     <>
     <section></section>
@@ -8,4 +8,4 @@ function QoutesPage(){
   );
 }
 
-export default QoutesPage;
+export default QuotesPage;
