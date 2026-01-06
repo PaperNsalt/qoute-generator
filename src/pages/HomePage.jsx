@@ -4,9 +4,13 @@ import Carousel from "../components/CarouselComponent.jsx";
 import CardComponent from "../components/CardComponent.jsx";
 import ContainerComponent from "../components/ContainerComponent.jsx";
 
-import { ArrowUpRightIcon, FacebookIcon } from "../components/IconComponent.jsx";
+import {
+  ArrowUpRightIcon,
+  FacebookIcon,
+} from "../components/IconComponent.jsx";
 
 import QuoteAnimation from "../components/LottieComponent.jsx";
+import DiceRoll from "../components/DiceRollLottie.jsx";
 
 function HomePage() {
   const carouselItems = [
@@ -58,13 +62,12 @@ function HomePage() {
             </h1>
 
             <p className="mt-10 mb-4">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore,
-              ducimus! Sunt consequatur amet laboriosam mollitia quis rem,
-              soluta a modi nobis optio itaque dignissimos et, ratione ut,
-              assumenda quia tempore.
+              Discover meaningful quotes that motivate, challenge, and inspire.
+              From timeless wisdom to modern thoughts, explore words that
+              resonate with your journey.
             </p>
 
-            <ButtonLink label="Generate Qoutes" />
+            <ButtonLink label="Get Inspired" />
           </div>
 
           <div className="flex justify-center items-center">
@@ -79,20 +82,15 @@ function HomePage() {
 
       <section>
         <div className="p-10 flex gap-4 justify-center items-center">
-          <h1 className="text-[3.8rem] bg-[#b7ff5e] py-2 px-4 rounded-2xl">
-            Services
+          <h1 className="text-[3.4rem] w-full bg-[#b7ff5e] py-2 px-4 rounded-2xl">
+            Why Quotes Matter
           </h1>
 
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
-            eos a quam necessitatibus, quas sint beatae quisquam nulla,
-            accusamus, deleniti distinctio maxime recusandae assumenda
-            repellendus culpa officia saepe quibusdam reiciendis voluptatibus
-            consectetur iusto? Quidem omnis praesentium rem id, fugiat est.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
-            libero facilis, repellat voluptatum temporibus, quos impedit natus
-            nisi velit officia unde amet debitis officiis commodi excepturi
-            expedita quibusdam est delectus.
+            Quotes have the power to inspire action, spark creativity, and
+            provide comfort during challenging times. A single sentence can
+            shift perspective and motivate positive change. This app was created
+            to make inspiration easily accessible—anytime, anywhere.
           </p>
         </div>
 
@@ -101,42 +99,43 @@ function HomePage() {
 
       <section>
         <div className="p-10 grid grid-cols-[repeat(auto-fit,minmax(600px,2fr))] gap-8">
-          <CardComponent 
-          title ="Search Engine"
-          subtitle="optimization"
-          icon={ArrowUpRightIcon}
-          label="Learn More"
-          AnimationComponent={QuoteAnimation}
+          <CardComponent
+            title="Random"
+            subtitle="Quotes"
+            icon={ArrowUpRightIcon}
+            label="Learn More"
+            AnimationComponent={DiceRoll}
+            
           />
 
-          <CardComponent 
-          title ="Search Engine"
-          subtitle="optimization"
-          backgroundColor="black"
-          titleBgColor="white"
-          subtitleBgColor="white"
-          icon={ArrowUpRightIcon}
-          label="Learn More"
-          AnimationComponent={QuoteAnimation}
+          <CardComponent
+            title="Fast"
+            subtitle="Interface"
+            backgroundColor="black"
+            titleBgColor="white"
+            subtitleBgColor="white"
+            icon={ArrowUpRightIcon}
+            label="Learn More"
+            AnimationComponent={QuoteAnimation}
           />
 
-          <CardComponent 
-          title ="Search Engine"
-          subtitle="optimization"
-          backgroundColor="black"
-          titleBgColor="white"
-          subtitleBgColor="white"
-          icon={ArrowUpRightIcon}
-          label="Learn More"
-          AnimationComponent={QuoteAnimation}
+          <CardComponent
+            title="Smooth"
+            subtitle="Design"
+            backgroundColor="black"
+            titleBgColor="white"
+            subtitleBgColor="white"
+            icon={ArrowUpRightIcon}
+            label="Learn More"
+            AnimationComponent={QuoteAnimation}
           />
 
-          <CardComponent 
-          title ="Search Engine"
-          subtitle="optimization"
-          icon={ArrowUpRightIcon}
-          label="Learn More"
-          AnimationComponent={QuoteAnimation}
+          <CardComponent
+            title="Save"
+            subtitle="Favorites"
+            icon={ArrowUpRightIcon}
+            label="Learn More"
+            AnimationComponent={QuoteAnimation}
           />
         </div>
       </section>
@@ -144,21 +143,24 @@ function HomePage() {
       <section>
         <div className="grid grid-cols-2 p-10">
           <div className="flex flex-col justify-evenly items-start">
-            <h1 className="text-[3.8rem]">
-              Let's make things happen
-            </h1>
+            <h1 className="text-[3.8rem]">Let's make things happen</h1>
 
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia cum fuga ea provident tenetur id eius minus necessitatibus incidunt omnis molestias, quam mollitia, consequatur earum! Laudantium assumenda mollitia porro option. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo illo incidunt non tempora provident! Ipsa cumque perferendis doloremque voluptatem non consequatur laborum veritatis temporibus dolorum ex ducimus, doloribus quas! Quo!
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              cum fuga ea provident tenetur id eius minus necessitatibus
+              incidunt omnis molestias, quam mollitia, consequatur earum!
+              Laudantium assumenda mollitia porro option. Lorem ipsum, dolor sit
+              amet consectetur adipisicing elit. Nemo illo incidunt non tempora
+              provident! Ipsa cumque perferendis doloremque voluptatem non
+              consequatur laborum veritatis temporibus dolorum ex ducimus,
+              doloribus quas! Quo!
             </p>
 
-            <ButtonLink
-            label="Get your free proposal"
-            />
+            <ButtonLink label="Get your free proposal" />
           </div>
 
           <div className="flex justify-center items-center">
-            <QuoteAnimation/>
+            <QuoteAnimation />
           </div>
         </div>
       </section>
@@ -166,29 +168,22 @@ function HomePage() {
       <section>
         <div className="p-10 flex gap-4 justify-center items-center">
           <h1 className="text-[3.8rem] w-full bg-[#b7ff5e] py-2 px-4 rounded-2xl">
-            Case Study
+            Purpose
           </h1>
 
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
-            eos a quam necessitatibus, quas sint beatae quisquam nulla,
-            accusamus, deleniti distinctio maxime recusandae assumenda
-            repellendus culpa officia saepe quibusdam reiciendis voluptatibus
-            consectetur iusto? Quidem omnis praesentium rem id, fugiat est.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
-            libero facilis, repellat voluptatum temporibus, quos impedit natus
-            nisi velit officia unde amet debitis officiis commodi excepturi
-            expedita quibusdam est delectus.
+            The goal of this project is to demonstrate clean UI design, smooth animations, and efficient state management using React.
           </p>
         </div>
       </section>
 
       <section>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(600px,2fr))] bg-black p-10 rounded-3xl">
-          
-          <ContainerComponent
-          text='hu'
-          />
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
+
+          <ContainerComponent text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly. It allows users to browse, search, and save quotes that reflect different moods, themes, and life perspectives." />
+
+          <ContainerComponent text="Designed to be user-friendly for everyone, including mobile users and those with accessibility needs." />
+          <ContainerComponent text="Quotes are easily updatable and scalable, allowing for future expansion and customization." />
         </div>
       </section>
     </>
