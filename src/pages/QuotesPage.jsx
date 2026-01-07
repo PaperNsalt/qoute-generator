@@ -77,6 +77,7 @@ function QuotesPage() {
   const [category, setCategory] = useState("wisdom");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [limit, setLimit] = useState(2);
 
   const fetchQuotes = async () => {
     setLoading(true);
@@ -84,7 +85,7 @@ function QuotesPage() {
 
     try {
       const res = await fetch(
-        `https://api.api-ninjas.com/v2/quotes?categories=${category}&limit=4`,
+        `https://api.api-ninjas.com/v2/quotes?categories=${category}&limit=${limit}`,
         {
           headers: {
             "X-Api-Key": import.meta.env.VITE_API_KEY,
@@ -107,6 +108,7 @@ function QuotesPage() {
   const resetQuotes = () => {
     setQuotes([]);
     setCategory("wisdom");
+    setLimit(4);
     setError(null);
     setLoading(false);
   };
@@ -130,29 +132,47 @@ function QuotesPage() {
         </p>
 
         {/* CATEGORY */}
-        <div className="flex justify-center">
-          <motion.select
-            whileHover={{
-              boxShadow: "0px 4px 12px rgba(0,0,0,0.08)",
-              scale: 1.05,
-              y: -2,
-            }}
-            whileFocus={{
-              boxShadow: "0px 0px 0px 3px rgba(99,102,241,0.35)",
-              scale: 1.05,
-              y: -2,
-            }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="flex justify-evenly flex-col items-center px-2 py-2 rounded-xl border"
-          >
-            {CATEGORIES.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </option>
-            ))}
-          </motion.select>
+        {/* CATEGORY RADIO BUTTONS */}
+        <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
+          {CATEGORIES.map((cat) => (
+            <motion.label
+              key={cat}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`cursor-pointer px-4 py-2 rounded-full border text-sm capitalize transition
+        ${
+          category === cat
+            ? "bg-[#7fdb0d] text-white border-black"
+            : "bg-transparent border-gray-400 hover:border-[#7fdb0d]/60"
+        }`}
+            >
+              <input
+                type="radio"
+                name="category"
+                value={cat}
+                checked={category === cat}
+                onChange={() => setCategory(cat)}
+                className="hidden"
+              />
+              {cat}
+            </motion.label>
+          ))}
+        </div>
+
+        {/* QUOTE COUNT */}
+        <div className="flex flex-col items-center gap-2">
+          <label className="text-sm font-medium">
+            Number of quotes: <span className="font-bold">{limit}</span>
+          </label>
+
+          <input
+            type="range"
+            min={1}
+            max={5}
+            value={limit}
+            onChange={(e) => setLimit(Number(e.target.value))}
+            className="w-48 accent-[#7fdb0d]"
+          />
         </div>
 
         {/* BUTTON */}
@@ -237,6 +257,7 @@ function QuotesPage() {
         )}
       </AnimatePresence>
 
+      {/* HOW IT WORKS */}
       <div className="flex flex-col justify-center items-center mt-70">
         <h1 className="text-[4rem] px-4 py-2 bg-[#b7ff5e] rounded-3xl">
           How It Works
@@ -245,17 +266,11 @@ function QuotesPage() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,2fr))] bg-black p-10 mt-10 rounded-3xl">
           <ContainerComponent text="Users begin by selecting a quote category (such as Motivation, Life, Love, or Wisdom). This selection determines the type of quotes that will be generated." />
 
-          <ContainerComponent
-            text="Once a category is selected, the application sends a request to the backend API. The request includes selected category and required number of quotes (4). This is handled asynchronously to ensure a smooth and responsive user experience."
-          />
-          
-          <ContainerComponent
-            text="The backend handles quote generation by first processing the incoming request and identifying the selected category. It then filters the available quotes to match that category and randomly selects four entries from the filtered dataset. These quotes are formatted into a structured JSON response before being sent back to the frontend."
-          />
-          
-          <ContainerComponent
-            text="Once the quote generation process is complete, the API sends the generated data to the frontend in real time. Each response includes the quote text, the author when available, and the associated category, allowing the frontend to display the information consistently and accurately."
-          />
+          <ContainerComponent text="Once a category is selected, the application sends a request to the backend API. The request includes selected category and required number of quotes (4). This is handled asynchronously to ensure a smooth and responsive user experience." />
+
+          <ContainerComponent text="The backend handles quote generation by first processing the incoming request and identifying the selected category. It then filters the available quotes to match that category and randomly selects four entries from the filtered dataset. These quotes are formatted into a structured JSON response before being sent back to the frontend." />
+
+          <ContainerComponent text="Once the quote generation process is complete, the API sends the generated data to the frontend in real time. Each response includes the quote text, the author when available, and the associated category, allowing the frontend to display the information consistently and accurately." />
         </div>
       </div>
     </section>
