@@ -16,6 +16,7 @@ import {
 
 import QuoteAnimation from "../components/LottieComponent.jsx";
 import DiceRoll from "../components/DiceRollLottie.jsx";
+import RunningMan from "../components/RunningManAnimation.jsx";
 
 function HomePage() {
   const carouselItems = [
@@ -121,7 +122,7 @@ function HomePage() {
             subtitleBgColor="white"
             icon={ArrowUpRightIcon}
             label="Learn More"
-            AnimationComponent={QuoteAnimation}
+            AnimationComponent={RunningMan}
           />
 
           <CardComponent
