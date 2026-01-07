@@ -1,5 +1,4 @@
 import { motion, useAnimation } from "framer-motion";
-import { a } from "framer-motion/client";
 import { useLayoutEffect, useRef, useEffect, useState } from "react";
 
 function Carousel({ items, link, speed = 80 }) {

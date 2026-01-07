@@ -6,7 +6,12 @@ import ContainerComponent from "../components/ContainerComponent.jsx";
 
 import {
   ArrowUpRightIcon,
-  FacebookIcon,
+  BookOpenIcon,
+  CompassIcon,
+  HeartIcon,
+  PenLineIcon,
+  ShareIcon,
+  SparkleIcon,
 } from "../components/IconComponent.jsx";
 
 import QuoteAnimation from "../components/LottieComponent.jsx";
@@ -15,39 +20,39 @@ import DiceRoll from "../components/DiceRollLottie.jsx";
 function HomePage() {
   const carouselItems = [
     {
-      icon: FacebookIcon,
+      icon: SparkleIcon,
       title: "Inspire",
       text: "Daily motivation",
       link: "https://motion.dev/docs/react-carousel",
     },
     {
-      icon: FacebookIcon,
+      icon: BookOpenIcon,
+      title: "Reflect",
+      text: "Meaningful thoughts",
+      link: "https://motion.dev/docs/react-carousel",
+    },
+    {
+      icon: CompassIcon,
+      title: "Discover",
+      text: "New Perspectives",
+      link: "https://motion.dev/docs/react-carousel",
+    },
+    {
+      icon: PenLineIcon,
       title: "Create",
-      text: "Share ideas",
+      text: "Personal Insights",
       link: "https://motion.dev/docs/react-carousel",
     },
     {
-      icon: FacebookIcon,
-      title: "Grow",
-      text: "Build habits",
+      icon: HeartIcon,
+      title: "Save",
+      text: "Favorite quotes",
       link: "https://motion.dev/docs/react-carousel",
     },
     {
-      icon: FacebookIcon,
-      title: "Grow",
-      text: "Build habits",
-      link: "https://motion.dev/docs/react-carousel",
-    },
-    {
-      icon: FacebookIcon,
-      title: "Grow",
-      text: "Build habits",
-      link: "https://motion.dev/docs/react-carousel",
-    },
-    {
-      icon: FacebookIcon,
-      title: "Grow",
-      text: "Build habits",
+      icon: ShareIcon,
+      title: "Share",
+      text: "Spread inspiration",
       link: "https://motion.dev/docs/react-carousel",
     },
   ];
@@ -67,7 +72,7 @@ function HomePage() {
               resonate with your journey.
             </p>
 
-            <ButtonLink label="Get Inspired" />
+            <ButtonLink label="Quote of the Day" />
           </div>
 
           <div className="flex justify-center items-center">
@@ -166,8 +171,8 @@ function HomePage() {
       </section>
 
       <section>
-        <div className="p-10 flex gap-4 justify-center items-center">
-          <h1 className="text-[3.8rem] w-full bg-[#b7ff5e] py-2 px-4 rounded-2xl">
+        <div className="p-10 flex gap-4 justify-start items-center">
+          <h1 className="text-[3.8rem] bg-[#b7ff5e] py-2 px-4 rounded-2xl">
             Purpose
           </h1>
 

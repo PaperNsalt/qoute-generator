@@ -13,7 +13,7 @@ backgroundColor = "white",
 }) {
   return (
     <>
-      <div className="border rounded-3xl p-10 flex justify-between items-center"
+      <div className="border border-b-8 rounded-3xl p-10 flex justify-between items-center"
       style={{ background: `${backgroundColor}`}}
       >
         <div className="flex flex-col justify-between items-start h-full">
