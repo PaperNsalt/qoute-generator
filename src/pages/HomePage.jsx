@@ -111,7 +111,6 @@ function HomePage() {
             icon={ArrowUpRightIcon}
             label="Learn More"
             AnimationComponent={DiceRoll}
-            
           />
 
           <CardComponent
