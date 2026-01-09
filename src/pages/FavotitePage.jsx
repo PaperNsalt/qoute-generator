@@ -1,5 +1,5 @@
 
-function AboutPage(){
+function FavoritePage(){
   return (
     <>
     <h1>About Page</h1>
@@ -7,4 +7,4 @@ function AboutPage(){
   );
 }
 
-export default AboutPage;
+export default FavoritePage;

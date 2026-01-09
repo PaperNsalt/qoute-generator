@@ -74,18 +74,52 @@ const CATEGORIES = [
 
 function QuotesPage() {
   const [quotes, setQuotes] = useState([]);
-  const [category, setCategory] = useState("wisdom");
+  const [categories, setCategories] = useState(["wisdom"]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [limit, setLimit] = useState(2);
 
+  const [favorites, setFavorites] = useState(() => {
+  const saved = localStorage.getItem("favoriteQuotes");
+  return saved ? JSON.parse(saved) : [];
+});
+
+const toggleFavorite = (quote) => {
+  setFavorites((prev) => {
+    const exists = prev.some(
+      (q) => q.quote === quote.quote && q.author === quote.author
+    );
+
+    let updated;
+    if (exists) {
+      updated = prev.filter(
+        (q) => !(q.quote === quote.quote && q.author === quote.author)
+      );
+    } else {
+      updated = [...prev, quote];
+    }
+
+    localStorage.setItem("favoriteQuotes", JSON.stringify(updated));
+    return updated;
+  });
+};
+
+
+
   const fetchQuotes = async () => {
+    if (categories.length === 0) {
+      setError("Please select at least one category.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
     try {
       const res = await fetch(
-        `https://api.api-ninjas.com/v2/quotes?categories=${category}&limit=${limit}`,
+        `https://api.api-ninjas.com/v2/quotes?categories=${categories.join(
+          ","
+        )}&limit=${limit}`,
         {
           headers: {
             "X-Api-Key": import.meta.env.VITE_API_KEY,
@@ -107,10 +141,16 @@ function QuotesPage() {
 
   const resetQuotes = () => {
     setQuotes([]);
-    setCategory("wisdom");
-    setLimit(4);
+    setCategories(["wisdom"]);
+    setLimit(2);
     setError(null);
     setLoading(false);
+  };
+
+  const toggleCategory = (cat) => {
+    setCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
   };
 
   const spanStyle = "text-[#7fdb0d]";
@@ -133,30 +173,33 @@ function QuotesPage() {
 
         {/* CATEGORY */}
         {/* CATEGORY RADIO BUTTONS */}
+        {/* CATEGORY MULTI-SELECT */}
         <div className="flex flex-wrap justify-center gap-3 max-w-4xl">
-          {CATEGORIES.map((cat) => (
-            <motion.label
-              key={cat}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`cursor-pointer px-4 py-2 rounded-full border text-sm capitalize transition
-        ${
-          category === cat
-            ? "bg-[#7fdb0d] text-white border-black"
-            : "bg-transparent border-gray-400 hover:border-[#7fdb0d]/60"
-        }`}
-            >
-              <input
-                type="radio"
-                name="category"
-                value={cat}
-                checked={category === cat}
-                onChange={() => setCategory(cat)}
-                className="hidden"
-              />
-              {cat}
-            </motion.label>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const active = categories.includes(cat);
+
+            return (
+              <motion.label
+                key={cat}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`cursor-pointer px-4 py-2 rounded-full border text-sm capitalize transition
+          ${
+            active
+              ? "bg-[#7fdb0d] text-black border-black"
+              : "bg-transparent border-gray-400 hover:border-[#7fdb0d]/60"
+          }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={active}
+                  onChange={() => toggleCategory(cat)}
+                  className="hidden"
+                />
+                {cat}
+              </motion.label>
+            );
+          })}
         </div>
 
         {/* QUOTE COUNT */}
@@ -195,14 +238,18 @@ function QuotesPage() {
             }
             onClick={fetchQuotes}
             label={loading ? "Loading" : "Show Quotes"}
-            disabled={loading}
+            disabled={loading || categories.length === 0}
           />
 
           <ButtonLink
             icon={DeleteIcon}
             onClick={resetQuotes}
             label="Reset"
-            disabled={!quotes.length && category === "wisdom"}
+            disabled={
+              !quotes.length &&
+              categories.length === 1 &&
+              categories[0] === "wisdom"
+            }
           />
         </div>
 
@@ -225,7 +272,7 @@ function QuotesPage() {
             exit={{ opacity: 0 }}
             className="grid grid-cols-[repeat(auto-fit,minmax(300px,2fr))] gap-6"
           >
-            {Array.from({ length: 4 }).map((_, index) => (
+            {Array.from({ length: limit }).map((_, index) => (
               <QuoteSkeleton key={index} />
             ))}
           </motion.div>
@@ -250,7 +297,14 @@ function QuotesPage() {
                 layout
                 className="grid grid-cols-[repeat(auto-fit,minmax(300px,2fr))] gap-6"
               >
-                <QuoteCard quote={q.quote} author={q.author} />
+                <QuoteCard
+                  quote={q.quote}
+                  author={q.author}
+                  isFavorite={favorites.some(
+                    (f) => f.quote === q.quote && f.author === q.author
+                  )}
+                  onToggleFavorite={() => toggleFavorite(q)}
+                />
               </motion.div>
             ))}
           </motion.div>

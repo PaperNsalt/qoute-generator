@@ -12,7 +12,7 @@ function Navbar() {
           <ul className="flex gap-8 ">
           <NavLink to="/" className={textStyle}>{HomeIcon}HOME</NavLink>
           <NavLink to="/qoutes" className={textStyle}> {QuoteIcon}QUOTES</NavLink>
-          <NavLink to="/about" className={textStyle}> {AboutIcon}ABOUT</NavLink>
+          <NavLink to="/favorite" className={textStyle}> {AboutIcon}FAVORITE</NavLink>
           <NavLink to="/contact" className={textStyle}> {ContactIcon}CONTACT</NavLink>
           </ul>
         </nav>
