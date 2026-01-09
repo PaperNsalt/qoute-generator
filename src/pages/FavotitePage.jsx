@@ -20,9 +20,10 @@ function FavoritePage() {
   };
 
   return (
-    <section className="px-10 py-16">
+    <section className="">
+      <div className="p-10">
       <h1 className="text-[4rem] font-bold text-center mb-10">
-        ❤️ Favorite Quotes
+        Favorite Quotes
       </h1>
 
       {favorites.length === 0 ? (
@@ -54,6 +55,7 @@ function FavoritePage() {
           </motion.div>
         </AnimatePresence>
       )}
+      </div>
     </section>
   );
 }

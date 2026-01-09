@@ -17,7 +17,7 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-6 max-w-500 min-w-60 max-h-90 p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative">
+    <div className="flex flex-col justify-between gap-6 max-w-500 min-w-60 max-h-auto p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative">
       {/* QUOTE ICON */}
       <div className="flex justify-start">{QuoteLeftIcon}</div>
 
@@ -34,7 +34,7 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
       </div>
 
       {/* ACTION BUTTONS */}
-      <div className="flex justify-end gap-3 mt-4">
+      <div className="flex justify-end gap-3">
         {/* COPY BUTTON */}
         <ButtonLink icon={CopyIcon} label="Copy" onClick={handleCopy} />
 
