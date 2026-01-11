@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import QuotesPage from './pages/QuotesPage';
 import FavoritePage from './pages/FavotitePage';
 import ContactPage from './pages/ContactPage';
+
+import Footer from './components/Footer';
 function App() {
 
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>
+
+<Footer></Footer>
     </>
   )
 }
