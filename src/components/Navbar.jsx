@@ -11,7 +11,7 @@ function Navbar() {
         <nav className="flex justify-between items-center max-w-[84%] mx-auto py-6 px-2">
           <img src={logo} alt="logo"  className="size-10"/>
           <ul className="flex gap-8 ">
-          <NavLink to="/qoute-generator" className={textStyle}>{HomeIcon}HOME</NavLink>
+          <NavLink to="/" className={textStyle}>{HomeIcon}HOME</NavLink>
           <NavLink to="/qoutes" className={textStyle}> {QuoteIcon}QUOTES</NavLink>
           <NavLink to="/favorite" className={textStyle}> {AboutIcon}FAVORITE</NavLink>
           <NavLink to="/contact" className={textStyle}> {ContactIcon}CONTACT</NavLink>

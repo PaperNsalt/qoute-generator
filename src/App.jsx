@@ -17,7 +17,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/qoute-generator" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/qoutes" element={<QuotesPage />} />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/contact" element={<ContactPage />} />
