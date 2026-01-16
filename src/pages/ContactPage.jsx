@@ -12,21 +12,25 @@ function ContactPage() {
           <ContactCardComponent
           icon={FacebookIcon}
           label="Facebook"
+          href="https://papernsalt.github.io/react-portfolio/"
           />
           
           <ContactCardComponent
           icon={InstagramIcon}
           label="Instagram"
+          href=""
           />
           
           <ContactCardComponent
           icon={EmailIcon}
           label="Gmail"
+          href=""
           />
 
           <ContactCardComponent
           icon={LinkedInIcon}
           label="LinkedIn"
+          href=""
           />
           
         </div>
