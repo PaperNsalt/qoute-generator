@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+
+import logo from "../assets/svg/QouteSparkLogo.svg"
 
 import { NavLink } from "react-router-dom";
 import { AboutIcon, ContactIcon, HomeIcon, QuoteIcon } from "./IconComponent";
@@ -8,7 +9,7 @@ function Navbar() {
     <>
       <header className="fixed top-0 left-0 w-full z-50 border-b bg-white/60 backdrop-blur-md max-[426px]:hidden">
         <nav className="flex justify-between items-center max-w-[84%] mx-auto py-6 px-2">
-          <img src="" alt="logo" />
+          <img src={logo} alt="logo"  className="size-10"/>
           <ul className="flex gap-8 ">
           <NavLink to="/" className={textStyle}>{HomeIcon}HOME</NavLink>
           <NavLink to="/qoutes" className={textStyle}> {QuoteIcon}QUOTES</NavLink>
