@@ -1,4 +1,4 @@
-import { link } from "framer-motion/client";
+import { link, title } from "framer-motion/client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -6,6 +6,7 @@ import ButtonLink from "../components/ButtonComponent.jsx";
 import Carousel from "../components/CarouselComponent.jsx";
 import CardComponent from "../components/CardComponent.jsx";
 import ContainerComponent from "../components/ContainerComponent.jsx";
+import LearnMoreComponent from "../components/LearnMoreComponent.jsx";
 
 import {
   ArrowUpRightIcon,
@@ -20,10 +21,37 @@ import {
 import QuoteAnimation from "../components/LottieComponent.jsx";
 import DiceRoll from "../components/DiceRollLottie.jsx";
 import RunningMan from "../components/RunningManAnimation.jsx";
+import { NotebookPen } from "lucide-react";
 
 function HomePage() {
   const [quoteOfDay, setQuoteOfDay] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [activeContent, setActiveContent] = useState("about");
+
+  const contentMap = {
+    about: {
+      title: "About the Quote Generator",
+      paragraphs: [
+        "This Quote Generator is a simple and modern web application built to deliver inspiration instantly.",
+        "It allows users to browse, search, and save quotes that reflect different moods and perspectives.",
+      ],
+    },
+    accessibility: {
+      title: "Accessibility & Usability",
+      paragraphs: [
+        "The application is designed to be user-friendly for everyone.",
+        "Special attention is given to mobile responsiveness and accessibility best practices.",
+      ],
+    },
+    scalability: {
+      title: "Scalable & Future-Ready",
+      paragraphs: [
+        "Quotes are stored in a scalable structure that supports future expansion.",
+        "New categories and features can be added without affecting existing functionality.",
+      ],
+    },
+  };
 
   const fetchQuoteOfTheDay = async () => {
     setLoading(true);
@@ -235,14 +263,33 @@ function HomePage() {
         </div>
       </section>
 
-      <section>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
-          <ContainerComponent text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly. It allows users to browse, search, and save quotes that reflect different moods, themes, and life perspectives." />
+      <section className="space-y-20">
+        
+      <LearnMoreComponent
+        title={contentMap[activeContent].title}
+        paragraphs={contentMap[activeContent].paragraphs}
+      />
 
-          <ContainerComponent text="Designed to be user-friendly for everyone, including mobile users and those with accessibility needs." />
-          <ContainerComponent text="Quotes are easily updatable and scalable, allowing for future expansion and customization." />
-        </div>
-      </section>
+      {/* Top Cards */}
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
+        <ContainerComponent
+          text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly."
+          onClick={() => setActiveContent("about")}
+        />
+
+        <ContainerComponent
+          text="Designed to be user-friendly for everyone, including mobile users and accessibility needs."
+          onClick={() => setActiveContent("accessibility")}
+        />
+
+        <ContainerComponent
+          text="Quotes are easily updatable and scalable for future expansion and customization."
+          onClick={() => setActiveContent("scalability")}
+        />
+      </div>
+
+      
+    </section>
     </>
   );
 }

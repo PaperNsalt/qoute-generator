@@ -1,23 +1,19 @@
 import ButtonLink from "./ButtonComponent";
 import { ArrowUpRightIcon } from "./IconComponent";
 
-function ContainerComponent({
-  text,
-  href
-}) {
+function ContainerComponent({ text, onClick }) {
   return (
-    <>
-      <div className="flex flex-col row justify-evenly gap-4 items-start p-8 border-r border-white">
-        <div>
-        <p className="text-white">
-          {text}
-        </p>
-        </div>
-        <div>
-        <ButtonLink label="Learn More" icon={ArrowUpRightIcon} href={href} />
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col justify-between gap-6 p-8 border-r border-white">
+      <p className="text-white">
+        {text}
+      </p>
+
+      <ButtonLink
+        label="Learn More"
+        icon={ArrowUpRightIcon}
+        onClick={onClick}
+      />
+    </div>
   );
 }
 
