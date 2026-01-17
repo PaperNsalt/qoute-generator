@@ -226,47 +226,45 @@ function HomePage() {
         </div>
       </section>
 
- <section>
-  {/* 1. grid-cols-1: Single column layout for mobile.
+      <section>
+        {/* 1. grid-cols-1: Single column layout for mobile.
     2. md:grid-cols-2: Two-column layout for medium screens (tablets/desktops) and up.
     3. gap-8: Adds space between the text and the animation when stacked.
     4. p-6 md:p-10: Reduces padding on mobile to save space.
   */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10">
-    
-    {/* Text Container */}
-    <div className="flex flex-col justify-center md:justify-evenly md:items-center">
-      
-      {/* Typography Adjustments:
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10">
+          {/* Text Container */}
+          <div className="flex flex-col justify-center md:justify-evenly md:items-center">
+            {/* Typography Adjustments:
          - text-4xl: Smaller, readable heading for mobile.
          - lg:text-[3.8rem]: Original large size for large screens.
          - leading-tight: Improves readability of the heading.
       */}
-      <h1 className="text-4xl text-center lg:text-[3.8rem] leading-tight font-bold mb-6 md:mb-0">
-        Let's make things happen
-      </h1>
+            <h1 className="text-4xl text-center lg:text-[3.8rem] leading-tight font-bold mb-6 md:mb-0">
+              Let's make things happen
+            </h1>
 
-      {/* Paragraph: Added standard text size for mobile and margin for spacing */}
-      <p className="text-base text-center md:text-lg text-gray-700 mb-8 md:mb-0">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-        cum fuga ea provident tenetur id eius minus necessitatibus
-        incidunt omnis molestias, quam mollitia, consequatur earum!
-        Laudantium assumenda mollitia porro option. Lorem ipsum, dolor sit
-        amet consectetur adipisicing elit. Nemo illo incidunt non tempora
-        provident! Ipsa cumque perferendis doloremque voluptatem non
-        consequatur laborum veritatis temporibus dolorum ex ducimus,
-        doloribus quas! Quo!
-      </p>
+            {/* Paragraph: Added standard text size for mobile and margin for spacing */}
+            <p className="text-base text-center md:text-lg text-gray-700 mb-8 md:mb-0">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              cum fuga ea provident tenetur id eius minus necessitatibus
+              incidunt omnis molestias, quam mollitia, consequatur earum!
+              Laudantium assumenda mollitia porro option. Lorem ipsum, dolor sit
+              amet consectetur adipisicing elit. Nemo illo incidunt non tempora
+              provident! Ipsa cumque perferendis doloremque voluptatem non
+              consequatur laborum veritatis temporibus dolorum ex ducimus,
+              doloribus quas! Quo!
+            </p>
 
-      <ButtonLink label="Get your free proposal" />
-    </div>
+            <ButtonLink label="Get your free proposal" />
+          </div>
 
-    {/* Animation Container */}
-    <div className="flex justify-center items-center mt-8 md:mt-0">
-      <QuoteAnimation />
-    </div>
-  </div>
-</section>
+          {/* Animation Container */}
+          <div className="flex max-[426px]:hidden justify-center items-center mt-8 md:mt-0">
+            <QuoteAnimation />
+          </div>
+        </div>
+      </section>
 
       <section>
         <div className="p-10 flex gap-4 justify-start items-center">
