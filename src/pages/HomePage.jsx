@@ -1,4 +1,3 @@
-import { link, title } from "framer-motion/client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -21,7 +20,6 @@ import {
 import QuoteAnimation from "../components/LottieComponent.jsx";
 import DiceRoll from "../components/DiceRollLottie.jsx";
 import RunningMan from "../components/RunningManAnimation.jsx";
-import { NotebookPen } from "lucide-react";
 
 function HomePage() {
   const [quoteOfDay, setQuoteOfDay] = useState(null);
