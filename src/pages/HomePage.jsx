@@ -115,72 +115,51 @@ function HomePage() {
   return (
     <>
       <section>
-  {/* 1. Grid: Changed to 1 column on mobile, 2 columns on medium screens (md:).
-    2. Gap: Added gap-8 to separate text and animation on mobile.
-    3. Padding: Reduced to p-6 on mobile, p-10 on desktop.
-  */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10 min-h-screen md:min-h-0">
-    
-    {/* Flex Container: 
-      - Items centered on mobile (items-center).
-      - Items start-aligned on desktop (md:items-start).
-      - Text centered on mobile (text-center), left on desktop (md:text-left).
-    */}
-    <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left order-1">
-      
-      {/* Heading: 
-        - text-4xl on mobile (readable).
-        - text-5xl on tablet.
-        - text-[4rem] on large desktop.
-      */}
-      <h1 className="text-4xl md:text-5xl lg:text-[4rem] leading-tight md:leading-16 font-bold">
-        Generate inspiring quotes anytime, anywhere
-      </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10 min-h-screen md:min-h-0">
+          <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left order-1">
+            <h1 className="text-4xl md:text-5xl lg:text-[4rem] leading-tight md:leading-16 font-bold">
+              Generate inspiring quotes anytime, anywhere
+            </h1>
 
-      <p className="mt-6 md:mt-10 mb-8 md:mb-4 text-base md:text-lg text-gray-600 max-w-lg">
-        Discover meaningful quotes that motivate, challenge, and inspire.
-        From timeless wisdom to modern thoughts, explore words that
-        resonate with your journey.
-      </p>
-
-      <ButtonLink
-        label={loading ? "Loading..." : "Quote of the Day"}
-        onClick={fetchQuoteOfTheDay}
-      />
-
-      {/* QUOTE PANEL */}
-      <AnimatePresence>
-        {quoteOfDay && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ type: "spring", stiffness: 120, damping: 18 }}
-            // Added w-full to ensure it uses available width on mobile
-            className="mt-8 p-6 bg-white border border-b-8 rounded-2xl shadow-md w-full max-w-md mx-auto md:mx-0 text-left"
-          >
-            <p className="italic text-lg md:text-[1.2rem] mb-4 text-gray-800">
-              “{quoteOfDay.quote}”
+            <p className="mt-6 md:mt-10 mb-8 md:mb-4 text-base md:text-lg text-gray-600 max-w-lg">
+              Discover meaningful quotes that motivate, challenge, and inspire.
+              From timeless wisdom to modern thoughts, explore words that
+              resonate with your journey.
             </p>
 
-            <div className="text-right">
-              <p className="font-medium bg-[#b7ff5e] inline-block px-3 py-1 rounded-lg text-sm md:text-base">
-                — {quoteOfDay.author || "Unknown"}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+            <ButtonLink
+              label={loading ? "Loading..." : "Quote of the Day"}
+              onClick={fetchQuoteOfTheDay}
+            />
 
-    {/* Right Column (Animation): 
-      - Order-2 ensures it stays below text on mobile (or change to order-1 to put it on top).
-      - hidden/block logic can be added here if you want to hide the animation on very small screens.
-    */}
-    <div className="hidden md:flex justify-center items-center order-2">
-      <QuoteAnimation />
-    </div>
-  </div>
+            {/* QUOTE PANEL */}
+            <AnimatePresence>
+              {quoteOfDay && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                  // Added w-full to ensure it uses available width on mobile
+                  className="mt-8 p-6 bg-white border border-b-8 rounded-2xl shadow-md w-full max-w-md mx-auto md:mx-0 text-left"
+                >
+                  <p className="italic text-lg md:text-[1.2rem] mb-4 text-gray-800">
+                    “{quoteOfDay.quote}”
+                  </p>
+
+                  <div className="text-right">
+                    <p className="font-medium bg-[#b7ff5e] inline-block px-3 py-1 rounded-lg text-sm md:text-base">
+                      — {quoteOfDay.author || "Unknown"}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className="hidden md:flex justify-center items-center order-2">
+            <QuoteAnimation />
+          </div>
+        </div>
       </section>
 
       <section>
@@ -188,24 +167,25 @@ function HomePage() {
       </section>
 
       <section>
-        <div className="p-10 flex gap-4 justify-center items-center">
-          <h1 className="text-[3.4rem] w-full bg-[#b7ff5e] py-2 px-4 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10 justify-center items-center">
+          <h1 className="text-3xl md:text-[3.4rem] leading-tight font-bold w-full md:w-1/2 bg-[#b7ff5e] py-4 px-6 rounded-2xl text-center md:text-left shadow-sm">
             Why Quotes Matter
           </h1>
-
-          <p>
+          <p className="text-base md:text-xl text-gray-700 leading-relaxed w-full md:w-1/2">
             Quotes have the power to inspire action, spark creativity, and
             provide comfort during challenging times. A single sentence can
             shift perspective and motivate positive change. This app was created
             to make inspiration easily accessible—anytime, anywhere.
           </p>
         </div>
-
-        <div></div>
       </section>
 
       <section>
-        <div className="p-10 grid grid-cols-[repeat(auto-fit,minmax(600px,2fr))] gap-8">
+        {/* 1. p-4 md:p-10: Less padding on mobile.
+    2. grid-cols-1: Single column on mobile.
+    3. xl:grid-cols-2: Two columns on very large screens (or use lg:grid-cols-2).
+  */}
+        <div className="p-4 md:p-10 grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-8">
           <CardComponent
             title="Random"
             subtitle="Quotes"
@@ -285,32 +265,29 @@ function HomePage() {
       </section>
 
       <section className="space-y-20">
-        
-      <LearnMoreComponent
-        title={contentMap[activeContent].title}
-        paragraphs={contentMap[activeContent].paragraphs}
-      />
-
-      {/* Top Cards */}
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
-        <ContainerComponent
-          text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly."
-          onClick={() => setActiveContent("about")}
+        <LearnMoreComponent
+          title={contentMap[activeContent].title}
+          paragraphs={contentMap[activeContent].paragraphs}
         />
 
-        <ContainerComponent
-          text="Designed to be user-friendly for everyone, including mobile users and accessibility needs."
-          onClick={() => setActiveContent("accessibility")}
-        />
+        {/* Top Cards */}
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
+          <ContainerComponent
+            text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly."
+            onClick={() => setActiveContent("about")}
+          />
 
-        <ContainerComponent
-          text="Quotes are easily updatable and scalable for future expansion and customization."
-          onClick={() => setActiveContent("scalability")}
-        />
-      </div>
+          <ContainerComponent
+            text="Designed to be user-friendly for everyone, including mobile users and accessibility needs."
+            onClick={() => setActiveContent("accessibility")}
+          />
 
-      
-     </section>
+          <ContainerComponent
+            text="Quotes are easily updatable and scalable for future expansion and customization."
+            onClick={() => setActiveContent("scalability")}
+          />
+        </div>
+      </section>
     </>
   );
 }
