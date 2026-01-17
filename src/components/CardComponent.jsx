@@ -31,7 +31,7 @@ backgroundColor = "white",
             </span>
           </h3>
 
-          <ButtonLink icon={icon} label={label} />
+          {/* <ButtonLink icon={icon} label={label} /> */}
         </div>
 
       

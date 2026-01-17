@@ -117,49 +117,72 @@ function HomePage() {
   return (
     <>
       <section>
-        <div className="grid grid-cols-2 p-10">
-          <div className="flex flex-col justify-center items-start">
-            <h1 className="text-[4rem] leading-16 text-left">
-              Generate inspiring quotes anytime, anywhere
-            </h1>
+  {/* 1. Grid: Changed to 1 column on mobile, 2 columns on medium screens (md:).
+    2. Gap: Added gap-8 to separate text and animation on mobile.
+    3. Padding: Reduced to p-6 on mobile, p-10 on desktop.
+  */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10 min-h-screen md:min-h-0">
+    
+    {/* Flex Container: 
+      - Items centered on mobile (items-center).
+      - Items start-aligned on desktop (md:items-start).
+      - Text centered on mobile (text-center), left on desktop (md:text-left).
+    */}
+    <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left order-1">
+      
+      {/* Heading: 
+        - text-4xl on mobile (readable).
+        - text-5xl on tablet.
+        - text-[4rem] on large desktop.
+      */}
+      <h1 className="text-4xl md:text-5xl lg:text-[4rem] leading-tight md:leading-16 font-bold">
+        Generate inspiring quotes anytime, anywhere
+      </h1>
 
-            <p className="mt-10 mb-4">
-              Discover meaningful quotes that motivate, challenge, and inspire.
-              From timeless wisdom to modern thoughts, explore words that
-              resonate with your journey.
+      <p className="mt-6 md:mt-10 mb-8 md:mb-4 text-base md:text-lg text-gray-600 max-w-lg">
+        Discover meaningful quotes that motivate, challenge, and inspire.
+        From timeless wisdom to modern thoughts, explore words that
+        resonate with your journey.
+      </p>
+
+      <ButtonLink
+        label={loading ? "Loading..." : "Quote of the Day"}
+        onClick={fetchQuoteOfTheDay}
+      />
+
+      {/* QUOTE PANEL */}
+      <AnimatePresence>
+        {quoteOfDay && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ type: "spring", stiffness: 120, damping: 18 }}
+            // Added w-full to ensure it uses available width on mobile
+            className="mt-8 p-6 bg-white border border-b-8 rounded-2xl shadow-md w-full max-w-md mx-auto md:mx-0 text-left"
+          >
+            <p className="italic text-lg md:text-[1.2rem] mb-4 text-gray-800">
+              “{quoteOfDay.quote}”
             </p>
 
-            <ButtonLink
-              label={loading ? "Loading..." : "Quote of the Day"}
-              onClick={fetchQuoteOfTheDay}
-            />
+            <div className="text-right">
+              <p className="font-medium bg-[#b7ff5e] inline-block px-3 py-1 rounded-lg text-sm md:text-base">
+                — {quoteOfDay.author || "Unknown"}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
 
-            {/* QUOTE PANEL */}
-            <AnimatePresence>
-              {quoteOfDay && (
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ type: "spring", stiffness: 120, damping: 18 }}
-                  className="mt-8 p-6 bg-white border border-b-8 rounded-2xl shadow-md max-w-md"
-                >
-                  <p className="italic text-[1.2rem] mb-4">
-                    “{quoteOfDay.quote}”
-                  </p>
-
-                  <p className="text-right font-medium bg-[#b7ff5e] inline-block px-3 py-1 rounded-lg">
-                    — {quoteOfDay.author || "Unknown"}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="flex justify-center items-center">
-            <QuoteAnimation />
-          </div>
-        </div>
+    {/* Right Column (Animation): 
+      - Order-2 ensures it stays below text on mobile (or change to order-1 to put it on top).
+      - hidden/block logic can be added here if you want to hide the animation on very small screens.
+    */}
+    <div className="hidden md:flex justify-center items-center order-2">
+      <QuoteAnimation />
+    </div>
+  </div>
       </section>
 
       <section>
@@ -289,7 +312,7 @@ function HomePage() {
       </div>
 
       
-    </section>
+     </section>
     </>
   );
 }
