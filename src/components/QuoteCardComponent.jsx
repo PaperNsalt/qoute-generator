@@ -31,75 +31,72 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-6 max-w-500 min-w-60 p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative">
-      {/* QUOTE ICON */}
-      <div className="flex justify-start">{QuoteLeftIcon}</div>
+    <div className="flex flex-col justify-between gap-4 md:gap-6 w-full max-w-[500px] p-6 md:p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative h-full">
+      <div className="flex justify-start text-gray-400">{QuoteLeftIcon}</div>
 
-      {/* QUOTE TEXT */}
-      <p className="text-[1.2rem] italic">{quote}</p>
+      <p className="text-lg md:text-[1.2rem] italic leading-relaxed text-gray-800 flex-grow">
+        {quote}
+      </p>
 
-      <div className="flex justify-end">{QuoteRightIcon}</div>
+      <div className="flex justify-end text-gray-400">{QuoteRightIcon}</div>
 
-      {/* AUTHOR */}
       <div className="flex justify-end">
-        <p className="text-right text-[1rem] py-1 px-2 bg-[#b7ff5e] rounded-lg text-black mt-2">
+        <p className="text-right text-sm md:text-base font-medium py-1 px-3 bg-[#b7ff5e] rounded-lg text-black mt-2 inline-block shadow-sm">
           — {author}
         </p>
       </div>
 
-      {/* ACTION BUTTONS */}
-      <div className="flex justify-end gap-3 items-center">
+      <div className="flex justify-end gap-3 items-center pt-2 border-t border-gray-100 mt-2">
         {/* COPY BUTTON */}
         <motion.div whileTap={{ scale: 0.9 }}>
           <ButtonLink
             icon={copied ? CheckIcon : CopyIcon}
             label={copied ? "Copied" : "Copy"}
             onClick={handleCopy}
-            className={`transition-all ${
-              copied ? "bg-green-500 text-white scale-105" : ""
+            className={`transition-all text-sm ${
+              copied
+                ? "bg-green-500 text-white scale-105 shadow-md"
+                : "hover:bg-gray-100"
             }`}
           />
         </motion.div>
 
-        {/* SAVE BUTTON */}
         <motion.div whileTap={{ scale: 0.9 }}>
           <ButtonLink
             icon={HeartIcon}
             label={savedFeedback || isFavorite ? "Saved" : "Save"}
             onClick={handleSave}
-            className={`transition-all ${
+            className={`transition-all text-sm ${
               savedFeedback || isFavorite
-                ? "bg-red-500 text-white scale-105"
-                : ""
+                ? "bg-red-500 text-white scale-105 shadow-md"
+                : "hover:bg-gray-100"
             }`}
           />
         </motion.div>
       </div>
 
-      {/* COPY FEEDBACK BADGE */}
       <AnimatePresence>
         {copied && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-3 right-3 text-sm bg-green-500 text-white px-3 py-1 rounded-full shadow"
+            className="absolute top-2 right-2 md:top-3 md:right-3 text-xs md:text-sm bg-green-600 text-white px-3 py-1.5 rounded-full shadow-lg z-10 flex items-center gap-1"
           >
-            Copied to clipboard
+            {CheckIcon} Copied!
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* SAVE FEEDBACK BADGE */}
       <AnimatePresence>
         {savedFeedback && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute top-3 left-3 text-sm bg-green-500 text-white px-3 py-1 rounded-full shadow"
+            className="absolute top-2 left-2 md:top-3 md:left-3 text-xs md:text-sm bg-red-500 text-white px-3 py-1.5 rounded-full shadow-lg z-10 flex items-center gap-1"
           >
-            Added to favorites
+            {HeartIcon} Saved!
           </motion.div>
         )}
       </AnimatePresence>

@@ -41,9 +41,7 @@ p {
   font-family: var(--font-secondary);
 }
 
-section {
-  padding-top: 4em;
-}
+
 
 .carousel-wrapper {
   margin: 4rem auto;

@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 function ButtonLink({
   href,
@@ -8,6 +8,7 @@ function ButtonLink({
   download = false,
   newTab = false,
   icon,
+  className = "",
 }) {
   const MotionButton = (
     <motion.button
@@ -17,21 +18,27 @@ function ButtonLink({
       whileTap={!disabled ? { scale: 0.9, y: 1 } : {}}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
       className={`
-        flex items-center gap-2
-        border bg-black text-[1rem]
+        flex items-center justify-center gap-2
+        border bg-black 
+        text-sm md:text-[1rem] font-medium
         text-white
-        px-4 py-2 rounded-3xl
+        px-3 py-2 md:px-4 md:py-2 rounded-3xl
         transition-colors duration-200
         hover:bg-[#b7ff5e] hover:text-black hover:border-black
         disabled:opacity-50 disabled:cursor-not-allowed
+        whitespace-nowrap
+        ${className} 
       `}
     >
-      {icon && <span>{icon}</span>}
+      {icon && (
+        <span className="flex items-center justify-center text-current">
+          {icon}
+        </span>
+      )}
       {label}
     </motion.button>
   );
 
-  // 🔹 If it's a link
   if (href) {
     return (
       <a
@@ -46,7 +53,6 @@ function ButtonLink({
     );
   }
 
-  // 🔹 If it's a normal button
   return MotionButton;
 }
 

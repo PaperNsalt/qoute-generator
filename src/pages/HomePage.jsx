@@ -114,9 +114,9 @@ function HomePage() {
 
   return (
     <>
-      <section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10 min-h-screen md:min-h-0">
-          <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left order-1">
+      <section className="mt-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-0 p-6 md:p-10 min-h-screen md:min-h-0">
+          <div className="flex flex-col justify-center gap-8 items-center md:items-start text-center md:text-left order-1">
             <h1 className="text-4xl md:text-5xl lg:text-[4rem] leading-tight md:leading-16 font-bold">
               Generate inspiring quotes anytime, anywhere
             </h1>
@@ -132,7 +132,6 @@ function HomePage() {
               onClick={fetchQuoteOfTheDay}
             />
 
-            {/* QUOTE PANEL */}
             <AnimatePresence>
               {quoteOfDay && (
                 <motion.div
@@ -140,7 +139,6 @@ function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ type: "spring", stiffness: 120, damping: 18 }}
-                  // Added w-full to ensure it uses available width on mobile
                   className="mt-8 p-6 bg-white border border-b-8 rounded-2xl shadow-md w-full max-w-md mx-auto md:mx-0 text-left"
                 >
                   <p className="italic text-lg md:text-[1.2rem] mb-4 text-gray-800">
@@ -181,10 +179,6 @@ function HomePage() {
       </section>
 
       <section>
-        {/* 1. p-4 md:p-10: Less padding on mobile.
-    2. grid-cols-1: Single column on mobile.
-    3. xl:grid-cols-2: Two columns on very large screens (or use lg:grid-cols-2).
-  */}
         <div className="p-4 md:p-10 grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-8">
           <CardComponent
             title="Random"
@@ -227,24 +221,12 @@ function HomePage() {
       </section>
 
       <section>
-        {/* 1. grid-cols-1: Single column layout for mobile.
-    2. md:grid-cols-2: Two-column layout for medium screens (tablets/desktops) and up.
-    3. gap-8: Adds space between the text and the animation when stacked.
-    4. p-6 md:p-10: Reduces padding on mobile to save space.
-  */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10">
-          {/* Text Container */}
           <div className="flex flex-col justify-center md:justify-evenly md:items-center">
-            {/* Typography Adjustments:
-         - text-4xl: Smaller, readable heading for mobile.
-         - lg:text-[3.8rem]: Original large size for large screens.
-         - leading-tight: Improves readability of the heading.
-      */}
             <h1 className="text-4xl text-center lg:text-[3.8rem] leading-tight font-bold mb-6 md:mb-0">
               Let's make things happen
             </h1>
 
-            {/* Paragraph: Added standard text size for mobile and margin for spacing */}
             <p className="text-base text-center md:text-lg text-gray-700 mb-8 md:mb-0">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
               cum fuga ea provident tenetur id eius minus necessitatibus
@@ -259,7 +241,6 @@ function HomePage() {
             <ButtonLink label="Get your free proposal" />
           </div>
 
-          {/* Animation Container */}
           <div className="flex max-[426px]:hidden justify-center items-center mt-8 md:mt-0">
             <QuoteAnimation />
           </div>
@@ -267,26 +248,25 @@ function HomePage() {
       </section>
 
       <section>
-        <div className="p-10 flex gap-4 justify-start items-center">
-          <h1 className="text-[3.8rem] bg-[#b7ff5e] py-2 px-4 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-10 justify-start items-start md:items-center max-[426px]:items-center">
+          <h1 className="text-4xl md:text-[3.8rem] bg-[#b7ff5e] py-2 px-4 rounded-2xl font-bold whitespace-nowrap">
             Purpose
           </h1>
 
-          <p>
+          <p className="text-base md:text-xl text-gray-700 leading-relaxed">
             The goal of this project is to demonstrate clean UI design, smooth
             animations, and efficient state management using React.
           </p>
         </div>
       </section>
 
-      <section className="space-y-20">
+      <section className="space-y-10 md:space-y-20">
         <LearnMoreComponent
           title={contentMap[activeContent].title}
           paragraphs={contentMap[activeContent].paragraphs}
         />
 
-        {/* Top Cards */}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(400px,2fr))] bg-black p-10 rounded-3xl">
+        <div className="grid grid-cols-1 lg:grid-cols-3 bg-black p-6 md:p-10 rounded-3xl">
           <ContainerComponent
             text="This Quote Generator is a simple and modern web application built to deliver inspiration instantly."
             onClick={() => setActiveContent("about")}
