@@ -31,10 +31,10 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-4 md:gap-6 w-full max-w-[500px] p-6 md:p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative h-full">
+    <div className="flex flex-col justify-between gap-4 md:gap-6 w-full max-w-125 p-6 md:p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative h-full">
       <div className="flex justify-start text-gray-400">{QuoteLeftIcon}</div>
 
-      <p className="text-lg md:text-[1.2rem] italic leading-relaxed text-gray-800 flex-grow">
+      <p className="text-lg md:text-[1.2rem] italic leading-relaxed text-gray-800 grow">
         {quote}
       </p>
 
