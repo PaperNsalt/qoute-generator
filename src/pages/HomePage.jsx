@@ -220,7 +220,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section>
+      <section className="mt-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 p-6 md:p-10">
           <div className="flex flex-col justify-center md:justify-evenly md:items-center">
             <h1 className="text-4xl text-center lg:text-[3.8rem] leading-tight font-bold mb-6 md:mb-0">
@@ -247,7 +247,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section>
+      <section className="mt-14">
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-6 md:p-10 justify-start items-start md:items-center max-[426px]:items-center">
           <h1 className="text-4xl md:text-[3.8rem] bg-[#b7ff5e] py-2 px-4 rounded-2xl font-bold whitespace-nowrap">
             Purpose

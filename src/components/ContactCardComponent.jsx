@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 function ContactCardComponent({ label, icon, href }) {
   return (
@@ -6,16 +6,26 @@ function ContactCardComponent({ label, icon, href }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="block"
+      className="block h-full"
     >
       <motion.div
-        whileHover={{ scale: 1, y: -2 }}
-        transition={{ type: "spring", stiffness: 500 }}
-        whileTap={{ scale: 0.9, y: 1 }}
-        className="flex flex-col gap-0 justify-center items-center border rounded-3xl p-10 border-b-8 cursor-pointer"
+        whileHover={{ scale: 1.02, y: -5 }}
+        whileTap={{ scale: 0.95, y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+        className="
+          flex flex-col gap-4 justify-center items-center 
+          bg-white border border-gray-200 border-b-8 
+          rounded-3xl p-6 md:p-10 
+          cursor-pointer h-full transition-colors duration-300
+          hover:border-black
+          max[426px]:border-black
+        "
       >
-        {icon}
-        <p className="text-[1.6rem]">{label}</p>
+        <div className="scale-90 md:scale-100">{icon}</div>
+
+        <p className="text-xl md:text-[1.6rem] font-medium text-center">
+          {label}
+        </p>
       </motion.div>
     </a>
   );
