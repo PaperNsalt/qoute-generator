@@ -18,7 +18,9 @@ function ButtonLink({
       whileTap={!disabled ? { scale: 0.9, y: 1 } : {}}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}
       className={`
-        flex items-center justify-center gap-2
+        max-[426px]:px-2
+        max-[426px]:py-2
+        flex items-center justify-center gap-1
         border bg-black 
         text-sm md:text-[1rem] font-medium
         text-white
