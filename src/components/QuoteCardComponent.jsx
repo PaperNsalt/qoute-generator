@@ -15,6 +15,11 @@ import ButtonLink from "./ButtonComponent";
 function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   const [copied, setCopied] = useState(false);
   const [savedFeedback, setSavedFeedback] = useState(false);
+  
+  // 1. New states for Download feedback
+  const [downloadFeedback, setDownloadFeedback] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  
   const cardRef = useRef(null);
 
   const handleCopy = async () => {
@@ -34,16 +39,20 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   };
 
   const handleDownload = async () => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || isProcessing) return;
+
+    // Start Loading State
+    setIsProcessing(true);
 
     try {
+      // Small delay to allow React to render the loading state before freezing UI for image generation
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
       const dataUrl = await toPng(cardRef.current, {
         cacheBust: true,
-        backgroundColor: "#ffffff", 
-        pixelRatio: 2, // High quality
-        
-        filter: (node) => node.id !== "card-buttons", 
+        backgroundColor: "#ffffff",
+        pixelRatio: 2,
+        filter: (node) => node.id !== "card-buttons",
       });
 
       const link = document.createElement("a");
@@ -52,9 +61,17 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      // 2. Trigger Success Message
+      setDownloadFeedback(true);
+      setTimeout(() => setDownloadFeedback(false), 3000);
+
     } catch (error) {
       console.error("Download failed:", error);
       alert("Could not generate image. Please try again.");
+    } finally {
+      // End Loading State
+      setIsProcessing(false);
     }
   };
 
@@ -77,25 +94,18 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
         </p>
       </div>
 
+      {/* --- BUTTONS --- */}
       <div
         id="card-buttons"
-        className="flex justify-end gap-3 items-center pt-2 border-t border-gray-100 mt-2"
+        className="flex flex-wrap justify-end gap-2 md:gap-3 items-center pt-2 border-t border-gray-100 mt-2"
       >
-        <motion.div whileTap={{ scale: 0.9 }}>
-          <ButtonLink
-            icon={DownloadIcon}
-            label="Download"
-            onClick={handleDownload}
-            className="hover:bg-gray-100 text-sm"
-          />
-        </motion.div>
 
         <motion.div whileTap={{ scale: 0.9 }}>
           <ButtonLink
             icon={copied ? CheckIcon : CopyIcon}
             label={copied ? "Copied" : "Copy"}
             onClick={handleCopy}
-            className={`transition-all text-sm ${
+            className={`transition-all text-xs sm:text-sm ${
               copied
                 ? "bg-green-500 text-white scale-105 shadow-md"
                 : "hover:bg-gray-100"
@@ -108,15 +118,31 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
             icon={HeartIcon}
             label={savedFeedback || isFavorite ? "Saved" : "Save"}
             onClick={handleSave}
-            className={`transition-all text-sm ${
+            className={`transition-all text-xs sm:text-sm ${
               savedFeedback || isFavorite
                 ? "bg-red-500 text-white scale-105 shadow-md"
                 : "hover:bg-gray-100"
             }`}
           />
         </motion.div>
+
+        <motion.div whileTap={{ scale: 0.9 }}>
+          <ButtonLink
+            // 3. Show a spinner or different label while processing
+            icon={isProcessing ? null : DownloadIcon}
+            label={isProcessing ? "..." : "Download"}
+            onClick={handleDownload}
+            disabled={isProcessing} // Disable button while downloading
+            className={`transition-all text-xs sm:text-sm ${
+              isProcessing ? "opacity-70 cursor-wait bg-gray" : "hover:bg-gray-100"
+            }`}
+          />
+        </motion.div>
       </div>
 
+      {/* --- TOAST NOTIFICATIONS --- */}
+      
+      {/* Copied Toast (Green) */}
       <AnimatePresence>
         {copied && (
           <motion.div
@@ -130,6 +156,7 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
         )}
       </AnimatePresence>
 
+      {/* Saved Toast (Red) */}
       <AnimatePresence>
         {savedFeedback && (
           <motion.div
@@ -142,6 +169,21 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* 4. NEW: Download Toast (Blue) */}
+      <AnimatePresence>
+        {downloadFeedback && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute top-2 right-2 md:top-3 md:right-3 text-xs md:text-sm bg-blue-500 text-white px-3 py-1.5 rounded-full shadow-lg z-10 flex items-center gap-1"
+          >
+            {DownloadIcon} Image saved to device!
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }
