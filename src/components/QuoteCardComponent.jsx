@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toPng } from "html-to-image";
 
 import {
   HeartIcon,
@@ -7,12 +8,14 @@ import {
   QuoteRightIcon,
   CopyIcon,
   CheckIcon,
+  DownloadIcon,
 } from "./IconComponent";
 import ButtonLink from "./ButtonComponent";
 
 function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
   const [copied, setCopied] = useState(false);
   const [savedFeedback, setSavedFeedback] = useState(false);
+  const cardRef = useRef(null);
 
   const handleCopy = async () => {
     try {
@@ -30,10 +33,38 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
     setTimeout(() => setSavedFeedback(false), 1500);
   };
 
-  return (
-    <div className="flex flex-col justify-between gap-4 md:gap-6 w-full max-w-125 p-6 md:p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative h-full">
-      <div className="flex justify-start text-gray-400">{QuoteLeftIcon}</div>
+  const handleDownload = async () => {
+    if (!cardRef.current) return;
 
+    try {
+
+      const dataUrl = await toPng(cardRef.current, {
+        cacheBust: true,
+        backgroundColor: "#ffffff", 
+        pixelRatio: 2, // High quality
+        
+        filter: (node) => node.id !== "card-buttons", 
+      });
+
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `quote-${author.replace(/\s+/g, "-").toLowerCase()}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Download failed:", error);
+      alert("Could not generate image. Please try again.");
+    }
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      style={{ backgroundColor: "#ffffff", color: "#1f2937" }}
+      className="flex flex-col justify-between gap-4 md:gap-6 w-full max-w-125 p-6 md:p-8 border border-b-8 rounded-xl shadow-sm hover:shadow-md transition bg-white relative h-full"
+    >
+      <div className="flex justify-start text-gray-400">{QuoteLeftIcon}</div>
       <p className="text-lg md:text-[1.2rem] italic leading-relaxed text-gray-800 grow">
         {quote}
       </p>
@@ -46,8 +77,19 @@ function QuoteCard({ quote, author, isFavorite, onToggleFavorite }) {
         </p>
       </div>
 
-      <div className="flex justify-end gap-3 items-center pt-2 border-t border-gray-100 mt-2">
-        {/* COPY BUTTON */}
+      <div
+        id="card-buttons"
+        className="flex justify-end gap-3 items-center pt-2 border-t border-gray-100 mt-2"
+      >
+        <motion.div whileTap={{ scale: 0.9 }}>
+          <ButtonLink
+            icon={DownloadIcon}
+            label="Download"
+            onClick={handleDownload}
+            className="hover:bg-gray-100 text-sm"
+          />
+        </motion.div>
+
         <motion.div whileTap={{ scale: 0.9 }}>
           <ButtonLink
             icon={copied ? CheckIcon : CopyIcon}
